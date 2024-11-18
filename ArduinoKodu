@@ -1,0 +1,27 @@
+const int duraklatOynatButonPin = 2;
+const int oncekiButonPin = 3;
+const int sonrakiButonPin = 4;
+
+void setup() {
+  pinMode(duraklatOynatButonPin, INPUT_PULLUP);
+  pinMode(oncekiButonPin, INPUT_PULLUP);
+  pinMode(sonrakiButonPin, INPUT_PULLUP);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (digitalRead(duraklatOynatButonPin) == LOW) {
+    Serial.println("PLAY_PAUSE");
+    delay(300);
+  }
+
+  if (digitalRead(oncekiButonPin) == LOW) {
+    Serial.println("PREV");
+    delay(300);
+  }
+
+  if (digitalRead(sonrakiButonPin) == LOW) {
+    Serial.println("NEXT");
+    delay(300);
+  }
+}
