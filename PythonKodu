@@ -1,0 +1,26 @@
+import serial
+from pynput.keyboard import Controller, Key
+import time
+
+ser = serial.Serial('COM5', 9600)
+
+klavye = Controller()
+
+def tuslara_bas(*tuslar):
+    for tus in tuslar:
+        klavye.press(tus)
+    for tus in tuslar:
+        klavye.release(tus)
+
+while True:
+    if ser.in_waiting > 0:
+        komut = ser.readline().decode('utf-8').strip()
+
+        if komut == "PLAY_PAUSE":
+            tuslara_bas(Key.media_play_pause)
+        elif komut == "PREV":
+            tuslara_bas(Key.media_previous)
+        elif komut == "NEXT":
+            tuslara_bas(Key.media_next)
+
+        time.sleep(0.1)
